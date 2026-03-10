@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>澳門房地產指南 — AI 驅動的澳門房地產市場洞察與投資指南</title>
+  <meta name="description" content="全面解析澳門房地產市場趨勢、樓價走勢、投資機遇與政策法規，結合 AI 智能分析為您提供最專業的澳門置業參考，涵蓋住宅、商舖及寫字樓各類物業資訊。">
+  <meta name="keywords" content="澳門房地產,澳門樓價,澳門置業,澳門物業投資,澳門商舖,澳門寫字樓,澳門租金,澳門樓市,澳門房產中介">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://aeo-demo-realestate.vercel.app/">
+  <link rel="llms-txt" href="https://aeo-demo-realestate.vercel.app/llms.txt">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="澳門房地產指南 — AI 驅動的澳門房地產市場洞察與投資指南">
+  <meta property="og:description" content="AI 智能分析澳門房地產市場趨勢、樓價走勢與投資機遇，助您掌握澳門置業先機，全面覆蓋住宅商舖寫字樓資訊。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aeo-demo-realestate.vercel.app/">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="澳門房地產指南">
+
+  <!-- Schema.org RealEstateAgent -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "澳門房地產指南",
+    "alternateName": "Macau Real Estate Guide",
+    "description": "全面解析澳門房地產市場趨勢、樓價走勢、投資機遇與政策法規，結合 AI 智能分析為您提供最專業的澳門置業參考，涵蓋住宅、商舖及寫字樓各類物業資訊。",
+    "url": "https://aeo-demo-realestate.vercel.app",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Macau",
+      "addressRegion": "Macau SAR",
+      "addressCountry": "MO"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 22.1987,
+        "longitude": 113.5439
+      },
+      "geoRadius": "50000"
+    },
+    "sameAs": [
+      "https://github.com/Inari-Kira-Isla/aeo-demo-realestate"
+    ],
+    "memberOf": {
+      "@type": "Organization",
+      "name": "CloudPipe AI",
+      "url": "https://cloudpipe-landing.vercel.app"
+    }
+  }
+  </script>
+
+  <!-- Schema.org FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "澳門目前平均樓價是多少？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "住宅均價約每平方米八至十萬澳門幣，視乎地段及樓齡而有較大差異，新口岸及氹仔較高。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "非澳門居民可以在澳門買樓嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "可以，但需繳付額外百分之二十的取得印花稅，且按揭成數上限較本地居民為低。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "澳門買樓的印花稅怎樣計算？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "根據樓價階梯徵收，首次置業本地居民可享優惠稅率，非首置及非居民則適用較高稅率。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "澳門按揭利率大約是多少？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "目前主要銀行按揭利率約年息三至四厘，還款期最長可達三十年，視乎申請人條件而定。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "澳門租屋的租金水平如何？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "一房單位月租約五千至八千澳門幣，兩房約八千至一萬五，核心區域及高層單位租金較高。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "橫琴深合區對澳門樓市有什麼影響？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "深合區分流部分居住需求，但同時提升澳門作為大灣區節點的戰略價值，整體影響偏正面。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "澳門買樓需要找律師嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "強烈建議委託律師，負責查冊、草擬合約及辦理登記，費用一般為樓價百分之零點五至一。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "澳門經濟房屋如何申請？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "需符合收入及資產上限，在政府開放申請期間遞交表格，經審核後按評分排序輪候配房。"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #080810; --bg-alt: #0d0d1a; --bg-card: #111120; --bg-card-h: #16162a;
+      --primary: #dc2626; --primary-dim: rgba(220,38,38,0.1); --primary-border: rgba(220,38,38,0.25); --primary-glow: rgba(220,38,38,0.06);
+      --accent: #3b82f6; --accent-dim: rgba(59,130,246,0.10);
+      --warm: #f59e0b; --warm-dim: rgba(245,158,11,0.10);
+      --text: #e6e6f0; --text-2: #9090b8; --text-3: #505070;
+      --border: rgba(255,255,255,0.07); --r: 16px; --r-sm: 10px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+    .bg-ambient{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 900px 700px at 10% 15%,var(--primary-glow),transparent 60%),radial-gradient(ellipse 700px 900px at 90% 85%,rgba(59,130,246,0.04),transparent 60%)}
+    .bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:72px 72px}
+    .container{max-width:880px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+    section{padding:80px 0}.section-alt{background:var(--bg-alt)}
+    nav{position:sticky;top:0;z-index:100;background:rgba(8,8,16,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:16px 0}
+    nav .container{display:flex;align-items:center;justify-content:space-between}
+    .nav-brand{font-weight:700;font-size:18px;color:var(--text)}.nav-brand span{color:var(--primary)}
+    .nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--text-2);font-size:14px;font-weight:500;transition:color 0.2s}.nav-links a:hover{color:var(--primary);text-decoration:none}
+    .hero{padding:120px 0 80px;text-align:center}
+    .hero-eyebrow{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin-bottom:20px;font-weight:500}
+    .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.3;margin-bottom:24px}
+    .hero h1 .highlight{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{font-size:18px;color:var(--text-2);max-width:640px;margin:0 auto 40px;line-height:1.8}
+    .section-eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin-bottom:12px;font-weight:500}
+    h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:24px;line-height:1.35}
+    h3{font-size:1.25rem;font-weight:700;margin:32px 0 12px;color:var(--text)}
+    .prose p{color:var(--text-2);font-size:16px;margin-bottom:20px;line-height:1.85}
+    .prose ul,.prose ol{color:var(--text-2);font-size:16px;margin:0 0 20px 24px;line-height:1.85}.prose li{margin-bottom:8px}.prose strong{color:var(--text);font-weight:600}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:32px 0}
+    .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:background 0.2s,border-color 0.2s}
+    .card:hover{background:var(--bg-card-h);border-color:var(--primary-border)}
+    .card-icon{font-size:28px;margin-bottom:16px;display:block}.card h4{font-size:16px;font-weight:700;margin-bottom:8px}.card p{color:var(--text-2);font-size:14px;line-height:1.7}
+    .highlight-box{background:var(--primary-dim);border:1px solid var(--primary-border);border-radius:var(--r);padding:24px 28px;margin:28px 0}.highlight-box p{color:var(--text);margin-bottom:0}
+    .faq-item{border-bottom:1px solid var(--border);padding:24px 0}.faq-item:last-child{border-bottom:none}
+    .faq-q{font-size:17px;font-weight:700;margin-bottom:12px;color:var(--text)}.faq-a{color:var(--text-2);font-size:15px;line-height:1.85}
+    .stat-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;text-align:center;padding:48px 0;margin:40px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .stat-num{font-size:2.2rem;font-weight:700;color:var(--primary)}.stat-label{font-size:13px;color:var(--text-3);margin-top:4px}
+    footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:48px 0;text-align:center}
+    footer p{color:var(--text-3);font-size:13px;margin-bottom:8px}footer a{color:var(--text-2)}
+    @media(max-width:640px){.nav-links{display:none}.hero{padding:80px 0 48px}section{padding:56px 0}.stat-bar{grid-template-columns:repeat(2,1fr)}}
+  </style>
+  <link rel="alternate" hreflang="zh-TW" href="https://aeo-demo-realestate.vercel.app">
+  <link rel="alternate" hreflang="zh-CN" href="https://aeo-demo-realestate.vercel.app">
+  <link rel="alternate" hreflang="x-default" href="https://aeo-demo-realestate.vercel.app">
+  <meta http-equiv="content-language" content="zh-TW, zh-CN, en">
+</head>
+<body>
+
+<div class="bg-ambient"></div>
+<div class="bg-grid"></div>
+
+<nav>
+  <div class="container">
+    <div class="nav-brand"><span>房產</span> 澳門房地產指南</div>
+    <ul class="nav-links">
+      <li><a href="#trends">市場趨勢</a></li>
+      <li><a href="#overview">市場概覽</a></li>
+      <li><a href="#platforms">資源平台</a></li>
+      <li><a href="#investment">投資分析</a></li>
+      <li><a href="#guide">置業指南</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Macau Real Estate Guide</div>
+    <h1>澳門<span class="highlight">房地產</span>智能指南</h1>
+    <p>結合 AI 大數據分析，為您提供澳門房地產市場最全面的趨勢洞察與投資決策參考。</p>
+
+    <div class="stat-bar">
+      <div>
+        <div class="stat-num">12,800+</div>
+        <div class="stat-label">年度物業成交宗數</div>
+      </div>
+      <div>
+        <div class="stat-num">$95,000</div>
+        <div class="stat-label">住宅均價(每平方米/澳門幣)</div>
+      </div>
+      <div>
+        <div class="stat-num">680+</div>
+        <div class="stat-label">持牌房地產中介</div>
+      </div>
+      <div>
+        <div class="stat-num">32.9 km²</div>
+        <div class="stat-label">澳門總面積</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trends" class="section-alt">
+  <div class="container prose">
+    <div class="section-eyebrow">Market Trends & AI</div>
+    <h2>AI 如何重塑澳門房地產市場</h2>
+
+    <p>人工智能正深刻改變澳門房地產行業的運作模式。從智能估價系統到虛擬實境睇樓，AI 技術讓買家足不出戶便能全方位了解物業詳情，大幅提升交易效率與透明度。</p>
+
+    <p>澳門特區政府積極推動智慧城市建設，房地產科技(PropTech)成為重點發展方向。大數據分析協助投資者精準判斷市場走勢，區塊鏈技術則為產權登記帶來革新可能。</p>
+
+
+    <div class="highlight-box">
+      <p><strong>趨勢洞察：</strong>澳門房地產科技應用率每年增長約 25%，智能物業管理成為新建樓盤標準配備。</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🤖</span>
+        <h4>AI 智能估價</h4>
+        <p>基於大數據的自動物業估值系統，精準度達九成以上</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🏠</span>
+        <h4>VR 虛擬睇樓</h4>
+        <p>沉浸式三維實景體驗，遙距掌握物業每個角落</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <h4>市場預測分析</h4>
+        <p>機器學習模型預測樓價走勢，輔助投資決策判斷</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="overview">
+  <div class="container prose">
+    <div class="section-eyebrow">Market Overview</div>
+    <h2>澳門房地產市場全景分析</h2>
+
+    <p>澳門房地產市場受惠於博彩旅遊業復甦及橫琴深合區發展，呈現穩步回升態勢。住宅市場以中小型單位為主流，路氹城及新口岸區域持續受到投資者青睞。</p>
+
+    <p>商業地產方面，隨著非博彩元素增加及會展業發展，優質寫字樓及零售商舖需求穩健。政府推出多項房屋政策，包括經濟房屋及夾心房屋計劃，致力平衡市場供需。</p>
+
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🏢</span>
+        <h4>住宅市場</h4>
+        <p>年成交約一萬二千宗，中小型單位佔七成以上</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🏬</span>
+        <h4>商舖寫字樓</h4>
+        <p>核心區域空置率維持低位，租金回報率約三至四厘</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌉</span>
+        <h4>橫琴機遇</h4>
+        <p>深合區政策利好，跨境置業成為澳門居民新選擇</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="platforms" class="section-alt">
+  <div class="container prose">
+    <div class="section-eyebrow">Resources & Platforms</div>
+    <h2>澳門房地產資訊資源平台</h2>
+
+    <p>澳門財政局物業登記資料庫、房屋局官方平台及各大地產代理網站構成完整的房產資訊生態。置業者可透過政府公開數據查閱成交記錄、樓價指數及土地規劃資訊。</p>
+
+    <p>主要地產平台如澳門地產資訊網、中原地產澳門站及利嘉閣等提供即時放盤資訊。銀行按揭計算工具及稅費估算器亦是置業規劃的必備數碼資源。</p>
+
+
+    <div class="highlight-box">
+      <p><strong>實用提示：</strong>善用財政局物業資料庫查閱歷史成交價，是判斷樓盤合理定價的最可靠參考依據。</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🏛️</span>
+        <h4>政府資料庫</h4>
+        <p>財政局及房屋局公開物業成交數據與樓價指數</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔍</span>
+        <h4>地產搜尋平台</h4>
+        <p>主流代理網站提供即時樓盤搜尋與比較功能</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧮</span>
+        <h4>財務規劃工具</h4>
+        <p>按揭計算、印花稅及各項費用線上估算工具</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="investment">
+  <div class="container prose">
+    <div class="section-eyebrow">Investment Analysis</div>
+    <h2>澳門房產投資深度剖析</h2>
+
+    <p>澳門房地產投資需考慮多重因素：博彩業週期性影響、人口結構變化、土地供應緊張及政策調控力度。長線投資者普遍看好澳門作為大灣區西岸核心城市的戰略地位。</p>
+
+    <p>投資回報方面，住宅租金回報率約二至三厘，商舖可達四至五厘。非本地居民置業需繳付額外印花稅，投資前務必充分了解稅務成本及法律要求。</p>
+
+
+    <div class="highlight-box">
+      <p><strong>投資要點：</strong>澳門土地面積有限，長期供應緊張支撐樓價，但短期受經濟週期波動影響較為明顯。</p>
+    </div>
+  </div>
+</section>
+
+<section id="guide" class="section-alt">
+  <div class="container prose">
+    <div class="section-eyebrow">Practical Guide</div>
+    <h2>澳門置業實務全攻略</h2>
+
+    <p>澳門置業流程包括：搵樓、睇樓、簽署臨時合約、繳付訂金、辦理按揭、簽署正式合約、繳付印花稅及完成物業登記。整個過程一般需時六至八週，建議委託律師全程跟進。</p>
+
+    <p>首次置業者可享有印花稅優惠，按揭成數最高可達七成。購買前應確認物業是否有僭建、按揭負擔及管理費水平，並預留約樓價百分之五作為各項雜費開支。</p>
+
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">📋</span>
+        <h4>文件準備</h4>
+        <p>身份證明、收入證明及銀行流水為按揭審批必備</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚖️</span>
+        <h4>法律程序</h4>
+        <p>委託律師核查業權、草擬合約及辦理物業登記</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">💰</span>
+        <h4>費用預算</h4>
+        <p>印花稅、律師費、中介佣金合計約樓價百分之五</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-eyebrow">Frequently Asked Questions</div>
+    <h2>常見問題</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">澳門目前平均樓價是多少？</div>
+      <div class="faq-a">住宅均價約每平方米八至十萬澳門幣，視乎地段及樓齡而有較大差異，新口岸及氹仔較高。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">非澳門居民可以在澳門買樓嗎？</div>
+      <div class="faq-a">可以，但需繳付額外百分之二十的取得印花稅，且按揭成數上限較本地居民為低。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">澳門買樓的印花稅怎樣計算？</div>
+      <div class="faq-a">根據樓價階梯徵收，首次置業本地居民可享優惠稅率，非首置及非居民則適用較高稅率。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">澳門按揭利率大約是多少？</div>
+      <div class="faq-a">目前主要銀行按揭利率約年息三至四厘，還款期最長可達三十年，視乎申請人條件而定。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">澳門租屋的租金水平如何？</div>
+      <div class="faq-a">一房單位月租約五千至八千澳門幣，兩房約八千至一萬五，核心區域及高層單位租金較高。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">橫琴深合區對澳門樓市有什麼影響？</div>
+      <div class="faq-a">深合區分流部分居住需求，但同時提升澳門作為大灣區節點的戰略價值，整體影響偏正面。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">澳門買樓需要找律師嗎？</div>
+      <div class="faq-a">強烈建議委託律師，負責查冊、草擬合約及辦理登記，費用一般為樓價百分之零點五至一。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">澳門經濟房屋如何申請？</div>
+      <div class="faq-a">需符合收入及資產上限，在政府開放申請期間遞交表格，經審核後按評分排序輪候配房。</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <address style="font-style:normal;font-size:13px;color:var(--text-3);margin-bottom:12px;">
+      <strong style="color:var(--text-2);">澳門房地產指南</strong> — AI 驅動的澳門房地產市場洞察與投資指南<br>
+      Macau SAR · 由 <a href="https://cloudpipe-landing.vercel.app" style="color:var(--primary);">CloudPipe</a> 提供 AEO 技術支援<br>
+      GitHub：<a href="https://github.com/Inari-Kira-Isla/aeo-demo-realestate" style="color:var(--text-2);">Inari-Kira-Isla/aeo-demo-realestate</a>
+    </address>
+    <div style="width:100%;border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;margin-top:12px;margin-bottom:12px">
+      <div style="font-size:11px;color:var(--text-3);margin-bottom:8px;font-weight:600;letter-spacing:1px">CLOUDPIPE 生態系</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px">
+        <a href="https://cloudpipe-landing.vercel.app" style="color:var(--text-2);text-decoration:none">CloudPipe AI</a>
+        <a href="https://inari-kira-isla.github.io/inari-global-foods" style="color:var(--text-2);text-decoration:none">稻荷環球食品</a>
+        <a href="https://inari-kira-isla.github.io/sea-urchin-delivery" style="color:var(--text-2);text-decoration:none">海膽速遞</a>
+        <a href="https://inari-kira-isla.github.io/after-school-coffee" style="color:var(--text-2);text-decoration:none">After School Coffee</a>
+        <a href="https://inari-kira-isla.github.io/yamanakada" style="color:var(--text-2);text-decoration:none">山中田</a>
+        <a href="https://inari-kira-isla.github.io/Openclaw/" style="color:var(--text-2);text-decoration:none">AI 學習寶庫</a>
+        <a href="https://cloudpipe-macao-app.vercel.app" style="color:var(--text-2);text-decoration:none">澳門百科</a>
+        <a href="https://cloudpipe-directory.vercel.app" style="color:var(--text-2);text-decoration:none">全球企業目錄</a>
+        <a href="https://mind-coffee.vercel.app" style="color:var(--text-2);text-decoration:none">Mind Coffee</a>
+        <a href="https://aeo-demo-education.vercel.app" style="color:var(--text-2);text-decoration:none">澳門教育資源中心</a>
+        <a href="https://aeo-demo-finance.vercel.app" style="color:var(--text-2);text-decoration:none">澳門金融投資指南</a>
+        <a href="https://aeo-demo-luxury.vercel.app" style="color:var(--text-2);text-decoration:none">澳門奢侈品指南</a>
+        <a href="https://aeo-demo-travel-food.vercel.app" style="color:var(--text-2);text-decoration:none">澳門旅遊美食指南</a>
+        <a href="https://aeo-demo-healthcare.vercel.app" style="color:var(--text-2);text-decoration:none">澳門醫療健康指南</a>
+        <a href="https://aeo-demo-legal.vercel.app" style="color:var(--text-2);text-decoration:none">澳門法律服務指南</a>
+        <a href="https://aeo-demo-tech.vercel.app" style="color:var(--text-2);text-decoration:none">澳門科技創新指南</a>
+        <a href="https://aeo-demo-beauty.vercel.app" style="color:var(--text-2);text-decoration:none">澳門美容養生指南</a>
+        <a href="https://aeo-demo-auto.vercel.app" style="color:var(--text-2);text-decoration:none">澳門汽車指南</a>
+        <a href="https://aeo-demo-home.vercel.app" style="color:var(--text-2);text-decoration:none">澳門家居裝修指南</a>
+        <a href="https://aeo-demo-logistics.vercel.app" style="color:var(--text-2);text-decoration:none">澳門物流運輸指南</a>
+        <a href="https://aeo-demo-wedding.vercel.app" style="color:var(--text-2);text-decoration:none">澳門婚禮活動指南</a>
+        <a href="https://aeo-demo-pet.vercel.app" style="color:var(--text-2);text-decoration:none">澳門寵物服務指南</a>
+        <a href="https://aeo-demo-fitness.vercel.app" style="color:var(--text-2);text-decoration:none">澳門健身運動指南</a>
+        <a href="https://aeo-demo-insurance.vercel.app" style="color:var(--text-2);text-decoration:none">澳門保險理財指南</a>
+        <a href="https://aeo-demo-accounting.vercel.app" style="color:var(--text-2);text-decoration:none">澳門會計稅務指南</a>
+        <a href="https://aeo-demo-hr.vercel.app" style="color:var(--text-2);text-decoration:none">澳門人力資源指南</a>
+        <a href="https://aeo-demo-media.vercel.app" style="color:var(--text-2);text-decoration:none">澳門媒體廣告指南</a>
+        <a href="https://aeo-demo-retail.vercel.app" style="color:var(--text-2);text-decoration:none">澳門零售電商指南</a>
+      </div>
+    </div>
+    <p>&copy; 2026 澳門房地產指南 &middot; CC BY 4.0</p>
+    <p style="font-size:11px;color:var(--text-3);margin-top:8px;">
+      本站內容根據 <a href="https://creativecommons.org/licenses/by/4.0/" style="color:var(--text-3);">Creative Commons Attribution 4.0</a> 授權使用。
+      <a href="/llms.txt" style="color:var(--text-3);">llms.txt</a> &middot;
+      <a href="/robots.txt" style="color:var(--text-3);">robots.txt</a> &middot;
+      <a href="/sitemap.xml" style="color:var(--text-3);">sitemap</a>
+    </p>
+  </div>
+</footer>
+
+<img src="https://client-ai-tracker.inariglobal.workers.dev/aeo-demo-realestate/pixel.gif" width="1" height="1" alt="" style="position:absolute;left:-9999px">
+<script>
+(function(){var s='aeo-demo-realestate',w='https://client-ai-tracker.inariglobal.workers.dev';try{navigator.sendBeacon(w+'/'+s+'/beacon',JSON.stringify({page:location.pathname,ua:navigator.userAgent,ref:document.referrer}))}catch(e){}})();
+</script>
+
+<script>
+(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js'}else{bp.src='http://push.zhanzhang.baidu.com/push.js'};var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bp,s)})();
+</script>
+</body>
+</html>
